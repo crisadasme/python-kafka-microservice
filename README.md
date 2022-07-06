@@ -22,11 +22,32 @@ Existe una necesidad de agilizar la comunicación entre diversos microservicios 
 ## Acerca del Proyecto 🔍
 IN PROGRESS
 ## Especificaciones Técnicas 🛠️
-IN PROGRESS
+- docker
+- fastAPI
+- aiokafka
+- Kafka-python
+- python 3.8
 ## Instalación 🚀
-IN PROGRESS
+- git clone 
 ## Como Utilizar 💻
-IN PROGRESS
+### 1. Levantar Proyecto
+- `make up` (puede tar unos minutos)
+- producer-healthcheck: `http://localhost:8000`
+- swagger: `http://localhost:8000/docs`
+- kafka-ui: `http://localhost:19000s`
+
+### 2. Crear Evento 
+- Envia un mensaje a Kafka, con la siguiente petición:
+```json
+POST http://localhost:8000/producer
+Accept: application/json
+Content-Type: application/json
+Body:
+{
+    "name": "value",
+    "description": "value",
+}
+```
 ### 🚶 Primeros Pasos
 `make setup`
 
@@ -54,8 +75,8 @@ La siguiente tabla muestra cuales mensajes de mensajes de commits y su tipo de r
 | `perf(pencil): remove graphiteWidth option`<br><br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.` | ~~Major~~ Breaking Release <br /> (Note that the `BREAKING CHANGE: ` token must be in the footer of the commit) |
 
 
-Must be one of the following:
-
+Tipos de Commit:
+```
 build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
 ci: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)
 docs: Documentation only changes
@@ -64,6 +85,7 @@ fix: A bug fix
 perf: A code change that improves performance
 refactor: A code change that neither fixes a bug nor adds a feature
 test: Adding missing tests or correcting existing tests
+```
 
 ## 🌚 Comandos del proyecto
 ---
@@ -85,11 +107,12 @@ IN PROGRESS
 El siguiente documento usa de referencia la [Guía de Diseño de Software de Xerpa](https://www.notion.so/ubank/Plantilla-para-Dise-o-de-Software-2678e18bb111459dac12cc478bc12581) para definir la estructura básica que todo proyecto debe seguir y cumplir.
 
 ### Recursos Útiles 🛠
-- Awesome ReadMe: https://github.com/matiassingers/awes...
-- Banner Maker: https://banner.godori.dev
-- Shields.io: http://shields.io
-- Carbon: https://carbon.now.sh
-
+- [aiokafka](https://aiokafka.readthedocs.io/en/stable/ka)
+- [Docker](https://docs.docker.com/get-started/overview/)
+- [FastAPI](https://fastapi.tiangolo.com)
+- [Kafdrop](https://github.com/obsidiandynamics/kafdrop)
+- [Kafka](https://kafka.apache.org)
+- [Kafka-python](https://kafka-python.readthedocs.io/en/master/)
 ### CheatSheet 🤯
 - Markdown Guide: https://www.markdownguide.org/cheat-s...
 - Markdown Cheatsheet: https://guides.github.com/pdfs/markdo...
