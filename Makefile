@@ -3,7 +3,7 @@
 ECR_REPOSITORY := devops-python-events-template
 
 build: install lint test format
-all: install lint test format deploy  
+all: install lint test format release deploy  
 
 # Build
 setup:
