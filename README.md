@@ -88,16 +88,16 @@ test: Adding missing tests or correcting existing tests
 ```
 
 ## 🌚 Comandos del proyecto
----
+
 IN PROGRESS
 ## Testing y Seguridad 🔥
----
+
 IN PROGRESS
 ## Deployment 🐳
----
+
 IN PROGRESS
 ## Limitaciones y Mejoras ♻️
----
+
 - ¿Cuáles son las limitaciones del diseño actual?
 - ¿Cuáles son las posibles extensiones en las que pensar para el futuro?
 - ¿Alguna otra consideración?
