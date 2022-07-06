@@ -42,3 +42,8 @@ deploy:
 	# # pushing release tag
 	# docker tag $(ECR_REPOSITORY):latest 212760202707.dkr.ecr.us-east-1.amazonaws.com/$(ECR_REPOSITORY):latest
 	# docker push 212760202707.dkr.ecr.us-east-1.amazonaws.com/$(ECR_REPOSITORY):latest
+
+retry-release:
+	@semantic-release publish --retry 
+dry-release:
+	@semantic-release publish --noop
