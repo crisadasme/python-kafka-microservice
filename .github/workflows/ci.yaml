@@ -26,19 +26,19 @@ jobs:
       - name: Formatting Code
         run: make format
 
-  Deploy:
+  Release:
     needs:
       - CI
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'chore(Deploy):')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_WIDGETS }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_WIDGETS }}
-          aws-region: us-east-1
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_WIDGETS }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_WIDGETS }}
+      #     aws-region: us-east-1
 
       - uses: actions/setup-python@v2
         with:
@@ -51,7 +51,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          make deploy
+          make release
 
   # Notify-Success:
   #   runs-on: ubuntu-latest
