@@ -3,7 +3,6 @@ import json
 from app.core.gateways.kafka import Kafka
 from app.core.models.message import Message
 from app.dependencies.kafka import get_kafka_instance
-
 from fastapi import APIRouter, Depends
 
 router = APIRouter()

@@ -2,7 +2,6 @@ import logging
 from json import loads
 
 from app.enum import EnvironmentVariables as EnvVariables
-
 from kafka import KafkaConsumer
 
 

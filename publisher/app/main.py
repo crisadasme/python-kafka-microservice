@@ -4,10 +4,7 @@ from app.core.gateways.kafka import Kafka
 from app.dependencies.kafka import get_kafka_instance
 from app.enum import EnvironmentVariables
 from app.routers import publisher
-
-
 from dotenv import load_dotenv
-
 from fastapi import Depends, FastAPI, Request
 
 load_dotenv()
