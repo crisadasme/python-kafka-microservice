@@ -20,7 +20,7 @@ lint:
 	# exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
 	@flake8 . --exclude .venv --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 test:
-	@pytest -vv --cov-report annotate tests
+	@pytest --cov-report annotate tests
 format:
 	@black .
 	@isort .
