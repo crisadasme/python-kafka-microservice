@@ -24,8 +24,8 @@ test:
 format:
 	@black .
 	@isort .
-post-install:
-	echo 'running post-installation'
+release:
+	@semantic-release publish
 # Deploy
 deploy:
 	# login ecr
