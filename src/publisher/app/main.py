@@ -10,7 +10,7 @@ from fastapi import Depends, FastAPI, Request
 load_dotenv()
 
 
-app = FastAPI(title='Kafka Publisher API')
+app = FastAPI(title="Kafka Publisher API")
 kafka_server = Kafka(
     topic=EnvironmentVariables.KAFKA_TOPIC_NAME.get_env(),
     port=EnvironmentVariables.KAFKA_PORT.get_env(),
@@ -37,9 +37,9 @@ async def add_process_time_header(request: Request, call_next):
     return response
 
 
-@app.get('/')
+@app.get("/")
 def get_root():
-    return {'message': 'API is running...'}
+    return {"message": "API is running..."}
 
 
 app.include_router(
