@@ -1,9 +1,4 @@
 <div align="center">
-  <p align="center">
-    <a href="https://getxerpa.com">
-      <img alt="Codely logo" src="https://user-images.githubusercontent.com/99266739/176068654-5d81ff5d-2cc7-4a0b-acb2-7a12953c2cc5.png" width="150px" height="150"/>
-  </p>
-
   <h1 align="center">
     ⚡️ PYTHON EVENTS TEMPLATE⚡️
   </h1>
