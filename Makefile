@@ -8,7 +8,7 @@ build: install lint test format
 all: install lint test format release deploy  
 
 # Used by deploy action
-PROJECT_NAME := riot-microservice
+PROJECT_NAME := python-kafka-microservice
 
 
 ## DOCKER COMPOSE ##
@@ -30,30 +30,28 @@ pull: ## [docker-compose] update Docker images without losing local databases
 	@docker-compose pull
 
 ## LOCAL DEVELOPMENT ##
-setup:
+setup: ## [development] Setup a virutal environment
 	@pip install virtualenv
 	virtualenv .venv
 	. .venv/bin/activate
-install:
+install: ## [development] Install requirements dependencies
 	@pip install --upgrade pip
 	@pip3 install -r requirements/dev.txt
-lint:
+lint: ## [development] Runs linter
 	# stop the build if there are Python syntax errors or undefined names
 	@flake8 . --exclude .venv --count --select=E9,F63,F7,F82 --show-source --statistics
 
 	# exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
 	@flake8 . --exclude .venv --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-test:
+test: ## [development] Runs unit tests
 	# @pytest --cov-report annotate tests
-format:
+format: ## [development] Format code and sort imports
 	@black .
 	@isort .
-release:
+release: ## [development] Run semantic-release
 	@semantic-release publish
 
-
-# Deployq
-deploy:
+deploy: ## [development] Dockerize project and push image to repository
 	# build image
 	@docker build -t $(PROJECT_NAME) .
 
@@ -65,7 +63,9 @@ deploy:
 	# # pushing release tag
 	# docker tag $(ECR_REPOSITORY):latest 212760202707.dkr.ecr.us-east-1.amazonaws.com/$(ECR_REPOSITORY):latest
 	# docker push 212760202707.dkr.ecr.us-east-1.amazonaws.com/$(ECR_REPOSITORY):latest
-retry-release:
-	@semantic-release publish --retry 
-dry-release:
+
+
+retry-release: ## [devops-utilities] retry last semantic-release
+	@semantic-release publish --retry
+dry-release: ## [devops-utilities] run dry semantic-release
 	@semantic-release publish --noop

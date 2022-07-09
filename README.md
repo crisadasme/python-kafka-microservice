@@ -1,6 +1,6 @@
 <div align="center">
   <h1 align="center">
-    ⚡️ PYTHON EVENTS TEMPLATE⚡️
+    ⚡️ PYTHON KAFKA MICROSERVICE⚡️
   </h1>
 
   <strong>Este repositorio te permitirá tener una plantilla de un microservicio cuya arquitectura esta basada en eventos utilizando kafka 👍</strong>
@@ -13,38 +13,40 @@ Existe una necesidad de agilizar la comunicación entre diversos microservicios 
 ## Acerca del Proyecto 🔍
 IN PROGRESS
 ## Especificaciones Técnicas 🛠️
-- docker
-- fastAPI
-- aiokafka
+- Docker
+- FastAPI
+- Aiokafka
 - Kafka-python
-- python 3.8
+- Python3.9
 ## Instalación 🚀
-- git clone 
+1. Clonar Repositorio
+2. Instalar Python3.9
+3. Instalar Docker
+
 ## Como Utilizar 💻
-### 1. Levantar Proyecto
-- `make up` (puede tar unos minutos)
-- producer-healthcheck: `http://localhost:8000`
-- swagger: `http://localhost:8000/docs`
-- kafka-ui: `http://localhost:19000s`
+1. Iniciar Infraestructura Local (Tarda unos minutos en inicializar): `make rebuild` y `make up`
+2. Iniciar Entorno Virtual: `make setup`
+3. Validar proyecto utilizando `continuous integration`: `make build`
 
-### 2. Crear Evento 
-- Envia un mensaje a Kafka, con la siguiente petición:
-```json
-POST http://localhost:8000/producer
-Accept: application/json
-Content-Type: application/json
-Body:
-{
-    "name": "value",
-    "description": "value",
-}
-```
 ### 🚶 Primeros Pasos
-`make setup`
+Con el ambiente local ejecutandose, puedes validar lo siguiente:
+  1. Comprobar el `health-check` del microservicio utilizando la URL: `http://localhost:8000` .
+  2. Comprobar el `swagger` del microservicio utlizando la URL: `http://localhost:8000/docs`
+  3. Comprobar la `UI` de la cola de eventos (kafka) utilizando la siguiente URL: `http://localhost:19000`
+  4. Publicar un nuevo evento a la cola utilizando la siguiente petición:
+    ```
+    json
+    POST http://localhost:8000/producer
+    Accept: application/json
+    Content-Type: application/json
+    Body:
+    {
+        "name": "value",
+        "description": "value",
+    }
+    ``` 
 
-`make all`
-
-### 📂 Entiendo Estructura de Carpetas
+### 📂  Estructura de Carpetas
 ```
 ├── 📁 src                # Código fuente del proyectos
 ├── 📁 docs               # Documentación relacionado al proyecto
@@ -53,49 +55,57 @@ Body:
 ```
 ### ⚙️ Versionamiento
 ---
-- Archivo: `..workflows/ci.yaml`: 
-- Descripción: Utiliza **semantic-release** [Angular Commit Message Conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format) para generar releases en base a los mensajes de commits.
-
-
-La siguiente tabla muestra cuales mensajes de mensajes de commits y su tipo de release que se consideraran al momento de ejecutar el comando de `semantic-release`:
-
-| Commit message                                                                                                                                                                                   | Release type                                                                                                    |
+- Ejecución: `../workflows/ci.yaml`: 
+- Descripción: **semantic-release** [Angular Commit Message Conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format) 
+  
+| Mensaje Commit                                                                                                                                                                                   | Tipo de Release                                                                                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | `fix(pencil): stop graphite breaking when too much pressure applied`                                                                                                                             | ~~Patch~~ Fix Release                                                                                           |
 | `feat(pencil): add 'graphiteWidth' option`                                                                                                                                                       | ~~Minor~~ Feature Release                                                                                       |
 | `perf(pencil): remove graphiteWidth option`<br><br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.` | ~~Major~~ Breaking Release <br /> (Note that the `BREAKING CHANGE: ` token must be in the footer of the commit) |
 
-
-Tipos de Commit:
+## 🌚 Acciones del proyecto
+A continuación se listan las acciones disponibles en el archivo `Makefile`:
 ```
-build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-ci: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)
-docs: Documentation only changes
-feat: A new feature
-fix: A bug fix
-perf: A code change that improves performance
-refactor: A code change that neither fixes a bug nor adds a feature
-test: Adding missing tests or correcting existing tests
+up                   [docker-compose] run the project.
+stop                 [docker-compose] stop Docker containers without removing them.
+down                 [docker-compose] stop and remove Docker containers.
+rebuild              [docker-compose] rebuild base Docker images.
+reset                [docker-compose] update Docker images and reset local databases.
+pull                 [docker-compose] update Docker images without losing local databases.
+
+setup                [development] Setup a virutal environment.
+install              [development] Install requirements dependencies.
+lint                 [development] Runs linter.
+test                 [development] Runs unit tests.
+format               [development] Format code and sort imports.
+release              [development] Run semantic-release.
+deploy               [development] Dockerize project and push image to repository.
+
+retry-release        [devops-utilities] retry last semantic-release.
+dry-release          [devops-utilities] run dry semantic-release.
 ```
-
-## 🌚 Comandos del proyecto
-
-IN PROGRESS
 ## Testing y Seguridad 🔥
-
-IN PROGRESS
+### Tests Unitarios
+- Carpeta: `tests/`
+- Comando: `make tests` (considerar installación de dependencias)
+### Tests Integración
+- Carpeta: 
+- Comando: 
+### Tests Aceptación 
+- Carpeta: 
+- Comando:
 ## Deployment 🐳
-
 IN PROGRESS
-## Limitaciones y Mejoras ♻️
 
+## Limitaciones y Mejoras ♻️
 - ¿Cuáles son las limitaciones del diseño actual?
 - ¿Cuáles son las posibles extensiones en las que pensar para el futuro?
 - ¿Alguna otra consideración?
 
 ## Extras ⭐️
 ### Recursos Útiles 🛠
-- [aiokafka](https://aiokafka.readthedocs.io/en/stable/ka)
+- [Aiokafka](https://aiokafka.readthedocs.io/en/stable/ka)
 - [Docker](https://docs.docker.com/get-started/overview/)
 - [FastAPI](https://fastapi.tiangolo.com)
 - [Kafdrop](https://github.com/obsidiandynamics/kafdrop)
@@ -104,3 +114,6 @@ IN PROGRESS
 ### CheatSheet 🤯
 - Markdown Guide: https://www.markdownguide.org/cheat-s...
 - Markdown Cheatsheet: https://guides.github.com/pdfs/markdo...
+
+## Proyecto Original 
+[Proyecto Original de FernandoBLima](https://github.com/FernandoBLima/python-kafka-docker)
