@@ -6,10 +6,6 @@
   <strong>Este repositorio te permitirá tener una plantilla de un microservicio cuya arquitectura esta basada en eventos utilizando kafka 👍</strong>
 </div>
 
-<p align="center">
-    <a href="https://github.com/Ubankapp"><img src="https://img.shields.io/badge/GetXerpa-OS-blue" alt="getxerpa.com"/></a>
-    <a href="https://github.com/Ubankapp/xerpa-readme"><img src="https://img.shields.io/badge/XerpaReadme-OS-black" alt="getxerpa.com"/></a>
-</p>
 
 Existe una necesidad de agilizar la comunicación entre diversos microservicios de modo que se pueda utilizar un bus de datos (o cola de mensajes) para lograr una arquitectura muy desacoplada y facilmente replicable.
 
@@ -98,9 +94,6 @@ IN PROGRESS
 - ¿Alguna otra consideración?
 
 ## Extras ⭐️
-### Diseño de Software 🎨
-El siguiente documento usa de referencia la [Guía de Diseño de Software de Xerpa](https://www.notion.so/ubank/Plantilla-para-Dise-o-de-Software-2678e18bb111459dac12cc478bc12581) para definir la estructura básica que todo proyecto debe seguir y cumplir.
-
 ### Recursos Útiles 🛠
 - [aiokafka](https://aiokafka.readthedocs.io/en/stable/ka)
 - [Docker](https://docs.docker.com/get-started/overview/)

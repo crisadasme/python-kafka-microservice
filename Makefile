@@ -8,10 +8,10 @@ build: install lint test format
 all: install lint test format release deploy  
 
 # Used by deploy action
-ECR_REPOSITORY := devops-python-events-template
+PROJECT_NAME := riot-microservice
 
 
-# Docker-Compose
+## DOCKER COMPOSE ##
 fromscratch: reset pull up
 up: ## [docker-compose] run the project
 	@docker-compose up
@@ -29,7 +29,7 @@ pull: ## [docker-compose] update Docker images without losing local databases
 	@docker-compose down --remove-orphans
 	@docker-compose pull
 
-# Development
+## LOCAL DEVELOPMENT ##
 setup:
 	@pip install virtualenv
 	virtualenv .venv
@@ -50,16 +50,15 @@ format:
 	@isort .
 release:
 	@semantic-release publish
-# Deploy
+
+
+# Deployq
 deploy:
-	# login ecr
-	# @aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 212760202707.dkr.ecr.us-east-1.amazonaws.com
+	# build image
+	@docker build -t $(PROJECT_NAME) .
 
-	# # build image
-	# @docker build -t $(ECR_REPOSITORY) .
-
-	# # pushing version tag
-	# echo current version: $(VERSION_TAG)
+	# LAST_TAG=${git describe --abbrev=0 --tags}
+	# echo current version: $(LAST_TAG)
 	# @docker tag $(ECR_REPOSITORY):latest 212760202707.dkr.ecr.us-east-1.amazonaws.com/$(ECR_REPOSITORY):$(VERSION_TAG)
 	# @docker push 212760202707.dkr.ecr.us-east-1.amazonaws.com/$(ECR_REPOSITORY):$(VERSION_TAG)
 
